@@ -64,5 +64,11 @@ test_systemd_start() {
     assertEquals "$(cat systemd.log)" "$expected"
 } 
 
+# Function called to clear the environment
+oneTimeTearDown(){
+  rm systemd.log
+}
+
+
 
 . /usr/share/shunit2/shunit2

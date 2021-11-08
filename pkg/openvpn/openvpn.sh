@@ -4,6 +4,11 @@
 # in shell scripts
 ##################################################################
 
+##################################################################
+# Imports
+##################################################################
+ . ../pkg/utils/utils.sh #Import utilities functions
+#. ../utils/utils.sh
 #######################################
 # Generate openvpn key 
 #######################################
@@ -23,7 +28,7 @@ openvpn::save_key(){
     if [ $# -eq 0 ]; then
         echo  "[ERROR] No key provided to save"
         exit 1
-    if ! echo "$1" > /etc/openvpn/static.key; then
+    elif ! utils::create_file "/etc/openvpn/static.key" "$1"; then
         echo  "[ERROR] Failed to save static key"
         exit 1
     fi
@@ -42,7 +47,7 @@ keepalive 10 60
 ping-timer-rem
 persist-tun
 persist-key"
-    if ! echo "$server_config" > /etc/openvpn/config.opvn; then
+    if ! utils::create_file "/etc/openvpn/config.opvn" "$server_config" ; then
         echo  "[ERROR] Failed to generate server config"
         exit 1
     fi
@@ -71,7 +76,7 @@ persist-tun
 persist-key
 route $2 255.255.255.0"
 
-    if ! echo "$client_config" > /etc/openvpn/config.opvn; then
+    if ! utils::create_file "/etc/openvpn/config.opvn" "$client_config"; then
         echo  "[ERROR] Failed to generate client config"
         exit 1
     fi
@@ -97,7 +102,7 @@ RestartSec=3
 [Install]
 WantedBy=multi-user.target"
 
-    if ! echo "$systemd_service" > /etc/systemd/system/kmvpn.service; then
+    if ! utils::create_file "/etc/systemd/system/kmvpn.service" "$systemd_service"; then
         echo  "[ERROR] Failed to generate systemd service"
         exit 1
     fi

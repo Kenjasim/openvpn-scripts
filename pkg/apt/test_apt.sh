@@ -77,5 +77,10 @@ test_apt_install_packages() {
     # Make sure that the update ran correctly
     assertEquals "$(cat apt.log)" "$expected"
 } 
+
+# Function called to clear the environment
+oneTimeTearDown(){
+  rm apt.log
+}
 . /usr/share/shunit2/shunit2
 
