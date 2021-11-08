@@ -28,7 +28,6 @@ apt::upgrade(){
 # Install packages through apt
 #######################################
 apt::install(){
-
     if [ $# -eq 0 ]; then
         echo  "[ERROR] No packages provided for apt to install"
         exit 1
