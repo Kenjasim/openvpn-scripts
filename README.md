@@ -11,4 +11,3 @@ This repository will contain the sscripts and VNF packages needed to deploy a VP
 5. Create the systemd services and start them
 6. Enable IP forwarding
 7. Allow client to reach server subnet by adding a route to the client side and enabling IP Masquradeing on server side
-
