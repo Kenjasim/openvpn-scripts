@@ -1,0 +1,35 @@
+nsd:
+  nsd:
+    - version: '1.0'
+      id: ns-app0
+      name: ns-app0
+      description: NS Descriptor
+      df:
+        - id: default-df
+          vnf-profile:
+            - id: '1'
+              virtual-link-connectivity:
+                - virtual-link-profile-id: mgmtnet
+                  constituent-cpd-id:
+                    - constituent-base-element-id: '1'
+                      constituent-cpd-id: vnf-cp0-ext
+              vnfd-id: vnf-app0 
+      
+      virtual-link-desc:
+        - id: mgmtnet
+          mgmt-network: true
+          vim-network-name: service
+      vnfd-id:
+        - vnf-app0    
+      sapd:
+        - id: ns-cp-mgmt
+          address-assignment: true
+          virtual-link-desc: mgmtnet
+          floating-ip-required: true
+
+# Network Service Descriptor
+# df: definition
+# virtual-link-desc: external VLD Network that interconnects different VNFs within a NS
+# vnfd-id: link to VNF descriptor 
+# sapd: connection point 
+# vim-network-name: subnet
