@@ -1,8 +1,8 @@
 nsd:
   nsd:
     - version: '1.0'
-      id: ns-app0
-      name: ns-app0
+      id: ns-vpnclient0
+      name: ns-vpnclient0
       description: NS Descriptor
       df:
         - id: default-df
@@ -13,14 +13,14 @@ nsd:
                   constituent-cpd-id:
                     - constituent-base-element-id: '1'
                       constituent-cpd-id: vnf-cp0-ext
-              vnfd-id: vnf-app0 
+              vnfd-id: vnf-vpnclient0 
       
       virtual-link-desc:
         - id: mgmtnet
           mgmt-network: true
           vim-network-name: service
       vnfd-id:
-        - vnf-app0    
+        - vnf-vpnclient0    
       sapd:
         - id: ns-cp-mgmt
           address-assignment: true

@@ -1,7 +1,7 @@
 vnfd:
   version: '1.0'
-  id: vnf-app0
-  product-name: vnf-app0
+  id: vnf-vpnserver0
+  product-name: vnf-vpnserver0
   description: VNF Descriptor
   df:
     - id: default-df
