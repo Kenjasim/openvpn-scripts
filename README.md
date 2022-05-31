@@ -15,7 +15,8 @@ This repository contains simple, unit tested, scripts to install and set up a si
 ## Prerequisites
 
 The scripts are built and tested to run on Linux (Ubuntu 20.04 machines). The machines require the use of the apt package manager to install any required packages, as a result this script requires an Ubuntu/Debian based OS to run. The easiest option will be to run the script on Ubuntu 20.04 which can be downloaded here
-VPN Server Setup
+
+## VPN Server Setup
 
 Transfer the server.sh script to the machine which will act as the VPN Server.
 
