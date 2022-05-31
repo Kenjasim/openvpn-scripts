@@ -44,14 +44,14 @@ main(){
 
     # Enable the systemd service 
     echo "[INFO] Enable service"
-    if ! systemd::enable kmvpn; then 
+    if ! systemd::enable shvpn; then 
         echo "[ERROR] Failed to enable systemd service"
         exit 1
     fi
 
     # Enable the systemd service 
     echo "[INFO] Start service"
-    if ! systemd::start kmvpn; then 
+    if ! systemd::start shvpn; then 
         echo "[ERROR] Failed to start systemd service"
         exit 1
     fi

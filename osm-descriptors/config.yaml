@@ -1,7 +1,0 @@
-vnf:
-  - member-vnf-index: "1"
-    vdu:
-      - id: vdu-app0
-        interface:
-          - name: vdu-eth0
-            floating-ip-required: True

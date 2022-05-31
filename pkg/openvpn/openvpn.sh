@@ -102,7 +102,7 @@ RestartSec=3
 [Install]
 WantedBy=multi-user.target"
 
-    if ! utils::create_file "/etc/systemd/system/kmvpn.service" "$systemd_service"; then
+    if ! utils::create_file "/etc/systemd/system/shvpn.service" "$systemd_service"; then
         echo  "[ERROR] Failed to generate systemd service"
         exit 1
     fi

@@ -1,6 +1,6 @@
 # OpenVPN VNF Package
 
-This repository will contain the sscripts and VNF packages needed to deploy a VPN server and VPN client onto OSM
+This repository contains simple, unit tested, scripts to install and set up a simple OpenVPN server and client.
 
 ## Steps
 
@@ -12,30 +12,36 @@ This repository will contain the sscripts and VNF packages needed to deploy a VP
 6. Enable IP forwarding
 7. Allow client to reach server subnet by adding a route to the client side and enabling IP Masquradeing on server side.
 
-## OSM Descriptors
+## Prerequisites
 
-The Descriptors for the openvpn configuration can be found in the `osm-descriptors` folder in the package root. They are split into the `server` and `client` folders.
+The scripts are built and tested to run on Linux (Ubuntu 20.04 machines). The machines require the use of the apt package manager to install any required packages, as a result this script requires an Ubuntu/Debian based OS to run. The easiest option will be to run the script on Ubuntu 20.04 which can be downloaded here
+VPN Server Setup
 
-### Defining Descriptors - Virtual Network Functions 
-
-Documentation: <http://osm-download.etsi.org/repository/osm/debian/ReleaseTEN/docs/osm-im/osm_im_trees/etsi-nfv-vnfd.html>
-
-Load descriptor to OSM
+Transfer the server.sh script to the machine which will act as the VPN Server.
 
 ```bash
-tar -cvzf osm-descriptor/[server|client]/vnf_package.tar.gz vnf_package
-osm vnfpkg-create vnf_package.tar.gz
+sudo ./server.sh 
 ```
 
-## Defining Descriptors - Network Services
+## VPN Client Setup
 
-Documentation: <http://osm-download.etsi.org/repository/osm/debian/ReleaseTEN/docs/osm-im/osm_im_trees/etsi-nfv-nsd.html>
-
-The descriptor must reference a pre-created subnet to deploy to, in the example provided this is set to 'vim-network-name: service'.
-
-Load descriptor to OSM:
+Transfer the client.sh script to the machine which will act as the VPN client. The machine MUST be on the same network as the cell for the vpn to have access to it. The script will require the public IP of the vpn server and the subnet of the server network. For example if the server  machine's internal ip is 192.168.0.25 you should pass in 192.168.0.0
 
 ```bash
-tar -cvzf osm-descriptor/[server|client]/ns_package.tar.gz ns_package
-osm nspkg-create ns_package.tar.gz
+sudo ./client.sh 10.0.0.0 10.40.10.0
+```
+
+To check if the script has succeded you can check the status of the systemd service. If the status is active then the script ran successfuly.
+
+```bash
+$ sudo systemctl status shvpn.service
+
+● shvpn.service - OpenVPN
+     Loaded: loaded (/etc/systemd/system/shvpn.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2022-02-01 12:38:28 UTC; 4s ago
+   Main PID: 2179 (openvpn)
+      Tasks: 1 (limit: 9561)
+     Memory: 1.1M
+     CGroup: /system.slice/shvpn.service
+             └─2179 /usr/sbin/openvpn --config /etc/openvpn/config.opvn
 ```
